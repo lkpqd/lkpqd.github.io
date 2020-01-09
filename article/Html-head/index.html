@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Html &lt; head &gt;中标签的含义 - liupingzi | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.liupingzi.com/article/Html-head/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>Html &lt; head &gt;中标签的含义</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 刘瓶子 on
+                            2017-07-10
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">刘瓶子</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="html-ltheadgtltheadgt中标签的含义">Html <code>&lt;head&gt;&lt;/head&gt;</code>中标签的含义</h3>
+<p>我们都知道，HTML的标签可以分为很多种，head 里面的我们称为元信息类标签，诸如title、meta、style、link、base、script这些，他们用来描述文档的一些基本信息。</p>
+<h4 id="1-title-标签">1. title 标签</h4>
+<ul>
+<li>可定义文档的标题。</li>
+</ul>
+<ul>
+<li><code>&lt;title&gt; 标签是 &lt;head&gt;</code> 标签中唯一要求包含的东西。</li>
+</ul>
+<ul>
+<li>浏览器会以特殊的方式来使用标题，并且通常把它放置在浏览器窗口的标题栏或状态栏上。同样，当把文档加入用户的链接列表或者收藏夹或书签列表时，标题将成为该文档链接的默认名称。</li>
+</ul>
+<h4 id="2-meat-标签">2. meat 标签</h4>
+<ul>
+<li>元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词。</li>
+</ul>
+<ul>
+<li>
+<meta> 标签永远位于 head 元素内部。元数据总是以名称/值的形式被成对传递的。
+</li>
+</ul>
+<ul>
+<li>设置网页编码：防止网页出现乱码<code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code></li>
+</ul>
+<p><strong>必须的属性:</strong></p>
+<p><img src="1.png" alt=""></p>
+<p><strong>可选的属性：</strong></p>
+<p><img src="2.png" alt=""></p>
+<ul>
+<li>
+<p>name 属性提供了名称/值对中的名称。HTML 和 XHTML 标签都没有指定任何预先定义的 <code>&lt;meta&gt;</code> 名称。通常情况下，您可以自由使用对自己和源文档的读者来说富有意义的名称。</p>
+<ul>
+<li>“keywords” 是一个经常被用到的名称。它为文档定义了一组关键字。某些搜索引擎在遇到这些关键字时，会用这些关键字对文档进行分类。</li>
+</ul>
+<ul>
+<li>“description” 它为文档定义了描述信息。比如用户百度搜索“京东”是就会显示京东网站的描述信息。</li>
+</ul>
+<ul>
+<li>如果没有提供 name 属性，那么名称/值对中的名称会采用 http-equiv 属性的值。</li>
+</ul>
+<p><img src="3.png" alt=""></p>
+</li>
+<li>
+<p>http-equiv 属性为名称/值对提供了名称。并指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对。<br>
+当服务器向浏览器发送文档时，会先发送许多名称/值对。</p>
+<ul>
+<li>所有服务器都至少要发送一个：content-type:text/html。这将告诉浏览器准备接受一个 HTML 文档。</li>
+</ul>
+<ul>
+<li>只有浏览器可以接受这些附加的头部字段，并能以适当的方式使用它们时，这些字段才有意义。</li>
+</ul>
+<ul>
+<li>使用带有 http-equiv 属性的 <code>&lt;meta&gt;</code>标签时，服务器将把名称/值对添加到发送给浏览器的内容头部。例如：</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   &lt;meta http-equiv="charset" content="iso-8859-1"&gt;</span><br><span class="line">&lt;meta http-equiv="expires" content="31 Dec 2008"&gt;</span><br><span class="line">   // 这样发送到浏览器的头部就应该包含：</span><br><span class="line">   content-type: text/html</span><br><span class="line">   charset:iso-8859-1</span><br><span class="line">   expires:31 Dec 2008</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>content 属性提供了名称/值对中的值。</p>
+<ul>
+<li>该值可以是任何有效的字符串。</li>
+</ul>
+<ul>
+<li>content 属性始终要和 name 属性或 http-equiv 属性一起使用</li>
+</ul>
+</li>
+<li>
+<p>scheme 属性用于指定要用来翻译属性值的方案</p>
+<ul>
+<li>此方案应该在由 <code>&lt;head&gt;</code>标签的 profile 属性指定的概况文件中进行了定义。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-style-标签">3. style 标签</h4>
+<ul>
+<li>标签用于为 HTML 文档定义样式信息。</li>
+<li>在 style 中规定在浏览器中如何呈现 HTML 文档。</li>
+<li>type 属性是必需的，定义 style 元素的内容。唯一可能的值是 “text/css”。</li>
+<li>style 元素位于 head 部分中。</li>
+<li>如需链接外部样式表，请使用 <code>&lt;link&gt;</code> 标签。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">　　h1 &#123;&lt;br&gt;　　　　color:red&lt;br&gt;　　&#125;</span><br><span class="line">　　p &#123;&lt;br&gt;　　　　color:blue&lt;br&gt;　　&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-link-标签">4. link 标签</h4>
+<p>link标签常用的场景有两种：作为网页图标标签；链接外部CSS</p>
+<ul>
+<li>ref属性：规定当前文档与被链接文档之间的关系</li>
+</ul>
+<ul>
+<li>href属性：规定被链接文档的位置</li>
+</ul>
+<ul>
+<li>type属性：规定被链接文档的 MIME 类型</li>
+</ul>
+<h5 id="41-作为网页图标标签">4.1 作为网页图标标签</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel="icon" href="favicon.ico"&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="42-链接外部css">4.2 链接外部CSS</h6>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel="stylesheet" type="text/css" href="css/base.css"&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="5-base-标签">5. base 标签</h4>
+<p>标签为页面上的所有链接规定默认地址或默认目标。通常情况下，浏览器会从当前文档的 URL 中提取相应的元素来填写相对 URL 中的空白。使用 <code>&lt;base&gt;</code> 标签可以改变这一点。浏览器随后将不再使用当前文档的 URL，而使用指定的基本 URL 来解析所有的相对 URL。这其中包括 <code>&lt;a&gt;、&lt;img&gt;、&lt;link&gt;、&lt;form&gt;</code> 标签中的 URL。</p>
+<p><strong>必选属性：</strong></p>
+<p><img src="4.png" alt=""></p>
+<p><strong>可选属性：</strong></p>
+<p><img src="5.png" alt=""></p>
+<h4 id="6-script-标签">6. script 标签</h4>
+<ul>
+<li>用于定义客户端脚本，比如 JavaScript。</li>
+<li>script 元素既可以包含脚本语句，也可以通过 src 属性指向外部脚本文件。</li>
+<li>必需的 type 属性规定脚本的 MIME 类型。</li>
+<li>JavaScript 的常见应用时图像操作、表单验证以及动态内容更新。</li>
+<li>假如此元素内部的代码没有位于某个函数中，那么这些代码会在页面被加载时被立即执行。<code>&lt;frameset&gt;</code>标签之后的脚本会被忽略。</li>
+</ul>
+<p><strong>必选属性：</strong></p>
+<p><img src="6.png" alt=""></p>
+<p><strong>可选属性：</strong></p>
+<p><img src="7.png" alt=""></p>
+<p><strong>引入外部js文件：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src="js/exercise.js"&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>编写内部js代码：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">　　var num = 7;</span><br><span class="line">　　var sum = 0;</span><br><span class="line">　　while(num&lt;117) &#123;</span><br><span class="line">　　　　if(num%3==0&amp;&amp;num%2==0) &#123;</span><br><span class="line">　　　　　　sum +=num;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　　　num++;</span><br><span class="line">　　&#125;</span><br><span class="line">　　document.write('7到117之间所有能被3整除的偶数的和为:'+sum);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Video/" data-toggle="tooltip" data-placement="top" title="HTML < video >视频无法自动播放">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/AxiosNode/" data-toggle="tooltip" data-placement="top" title="Axios发送post请求node服务器无法通过req.body获取参数">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#html-ltheadgtltheadgt中标签的含义"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Html <code>&lt;head&gt;&lt;/head&gt;</code>&#x4E2D;&#x6807;&#x7B7E;&#x7684;&#x542B;&#x4E49;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-title-标签"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">1. title &#x6807;&#x7B7E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-meat-标签"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">2. meat &#x6807;&#x7B7E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-style-标签"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">3. style &#x6807;&#x7B7E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4-link-标签"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">4. link &#x6807;&#x7B7E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#41-作为网页图标标签"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">4.1 &#x4F5C;&#x4E3A;&#x7F51;&#x9875;&#x56FE;&#x6807;&#x6807;&#x7B7E;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#42-链接外部css"><span class="toc-nav-number">1.4.1.1.</span> <span class="toc-nav-text">4.2 &#x94FE;&#x63A5;&#x5916;&#x90E8;CSS</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#5-base-标签"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">5. base &#x6807;&#x7B7E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6-script-标签"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">6. script &#x6807;&#x7B7E;</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.csdn.net/huwh_" target="_blank">CSDN Blog 胡伟煌</a></li>
+                    
+                        <li><a href="http://dockone.io/people/胡伟煌" target="_blank">DockOne 胡伟煌</a></li>
+                    
+                        <li><a href="https://yq.aliyun.com/u/huweihuang" target="_blank">阿里云栖社区 胡伟煌</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/lkpqd">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 刘瓶子 2020 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://www.huweihuang.com">胡伟煌</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.liupingzi.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.liupingzi.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

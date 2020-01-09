@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Javascript面试中的坑 - liupingzi | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.liupingzi.com/article/Javascript-face/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>Javascript面试中的坑</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 刘瓶子 on
+                            2017-07-25
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">刘瓶子</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="javascript面试中的坑">Javascript面试中的坑</h3>
+<h4 id="1typeof-对类型的判断">1.typeof 对类型的判断</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function()  &#123;   </span><br><span class="line">    return typeof arguments;</span><br><span class="line">    &#125;</span><br><span class="line"> )();</span><br></pre></td></tr></table></figure>
+<p><strong>答案：“Object”</strong></p>
+<p>解释：arguments是一个伪数组，是JavaScript内置对象</p>
+<h4 id="2函数的声明">2.函数的声明</h4>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> var f = function g()&#123;</span><br><span class="line">    return 23;</span><br><span class="line">&#125;;   </span><br><span class="line">typeof g();</span><br></pre></td></tr></table></figure>
+<p><strong>答案：会报错。Uncaught ReferenceError: g is not defined</strong></p>
+<p>解释：因为在这里function g(){return 23;};只是作为一个带有名字函数表达式，不是函数的声明。函数实际上是绑定到变量f，不是g。如果想调用这个函数，应该通过f()进行调用。</p>
+<h4 id="3delete方法">3.delete方法</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function(x)&#123;</span><br><span class="line">    delete x;</span><br><span class="line">    return x;   </span><br><span class="line">&#125;)(1);</span><br></pre></td></tr></table></figure>
+<p><strong>答案：1</strong></p>
+<p>解释：delete是用来删除对象中的某个属性的方法，并不能直接删除变量。</p>
+<h4 id="4变量的声明和赋值">4.变量的声明和赋值</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var y = 1, x = y = typeof x;   </span><br><span class="line">x;</span><br></pre></td></tr></table></figure>
+<p><strong>答案：“undefined”</strong></p>
+<p>解释：解析这段代码时，会先进行变量声明的提升，即var y；var x； 然后真正执行代码的时候，y先是被赋值为1，然后x=y=typeof x可以进行一下拆分：</p>
+<p>因为x被声明还未被赋值，所以x为undefined，自然typeof x的结果为 “undefined”。=赋值是从右向左执行的，所以先是y = “undefined”,再是x=y，</p>
+<p>理所当然，x的结果就是字符串类型的&quot;undefined&quot;。</p>
+<h4 id="5自调用函数传函数参数">5.自调用函数传函数参数</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function f(f)&#123;</span><br><span class="line">    return typeof f();</span><br><span class="line">&#125;)(function()&#123; return 1; &#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>答案：“number”</strong></p>
+<p>解释：这段代码中是将函数function(){ return 1; }作为参数传给了自调用函数进行使用。对自调用函数内部return typeof f() ，f是传递过来的参数，先对它加了()进行函数调用，执行结果为1,；然后 typeof 1 的结果自然就是&quot;number&quot;了。</p>
+<h4 id="6自调用函数和arguments对象">6.自调用函数和arguments对象</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var foo = &#123;</span><br><span class="line">    bar: function() &#123;</span><br><span class="line">       return this.baz;</span><br><span class="line">    &#125;,</span><br><span class="line">    baz: 1   </span><br><span class="line">&#125;;   </span><br><span class="line">(function()&#123;</span><br><span class="line">    return typeof arguments[0]();   </span><br><span class="line">&#125;)(foo.bar);</span><br></pre></td></tr></table></figure>
+<p><strong>答案：“undefined”</strong></p>
+<p>解释：arguments是用来存放函数实参的伪数组对象。</p>
+<p>在执行自调用函数function(){return typeof arguments<a href="">0</a>; 的时候，argunments<a href="">0</a>实际上就是(function() { return this.baz;})()，这就需要理解this的指向问题了，我们传参foo.bar时实际上是传递的foo对象中bar属性所对应的属性值，即只是函数体function() { return this.baz;}，需要理解的就是这只是一个普通函数，其this的指向对应的是window，并不是foo。又因为window中并没有属性baz，执行结果自然是undefined，再通过typeof检测其类型，最终结果就是&quot;undefined&quot;。</p>
+<p>可以结合下面的代码进行理解，下面代码的结果也是&quot;undefined&quot;。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = &#123;</span><br><span class="line">    bar: function()&#123; return this.baz; &#125;,</span><br><span class="line">    baz: 1</span><br><span class="line"> &#125;</span><br><span class="line">f = foo.bar;</span><br><span class="line">typeof f();</span><br></pre></td></tr></table></figure>
+<h4 id="7逗号操作符">7.逗号操作符</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var f = (</span><br><span class="line">    function f()&#123; return "1"; &#125;,</span><br><span class="line">    function g()&#123; return 2; &#125;</span><br><span class="line">)();</span><br><span class="line">typeof f;</span><br></pre></td></tr></table></figure>
+<p><strong>答案：&quot;number&quot;</strong><br>
+解释：逗号操作符的使用可以很混淆，用下面这段代码说明它的行为:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var x = (1, 2, 3);</span><br><span class="line">x;</span><br></pre></td></tr></table></figure>
+<h4 id="8函数声明">8.函数声明</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var x = 1;</span><br><span class="line">if (function f()&#123;&#125;) &#123;</span><br><span class="line">    x += typeof f;</span><br><span class="line">&#125;</span><br><span class="line">x;</span><br></pre></td></tr></table></figure>
+<p><strong>答案：“1undefined”</strong></p>
+<p>解释：同第二题一样，if（）括号中的只能算是函数表达式，并不是说函数的声明，所以，用typeof检测 f 时，结果为undefined</p>
+<h4 id="9预解析">9.预解析</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(function f()&#123;</span><br><span class="line">    function f()&#123; return 1; &#125;</span><br><span class="line">    return f();</span><br><span class="line">    function f()&#123; return 2; &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p><strong>答案：2</strong></p>
+<p>解释：在执行return之前，函数声明会在任何表达式被解析和求值之前先被解析和求值，即使你的声明在代码的最后一行，它也会在同作用域内第一个表达式之前被解析/求值。题目中函数提升了两次，第二次把第一次覆盖了。</p>
+<h4 id="10创建对象new关键字">10.创建对象，new关键字</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function f()&#123; return f; &#125;</span><br><span class="line">new f() instanceof f;</span><br></pre></td></tr></table></figure>
+<p><strong>答案：false</strong></p>
+<p>解释：值得注意的是 instanceof 检测的是原型。</p>
+<p>对于new关键字，做了几件事：1.创建空对象。2.让this指向当前对象。3.执行构造函数内部代码。4.默认如果没有覆盖这个空对象的话,返回this（当前对象）。</p>
+<p>我们在看 f() 返回了 return f；构造函数本身在 new 的过程中会返回一个表示该对象的实例。但是函数的返回值（这是返回的是构造函数本身）覆盖了这个实例，这个new 就形同虚设。</p>
+<p>如果f的形式为 function f(){return this}或function f(){}结果就应该是true了。</p>
+<h4 id="11数组typeof">11.数组，typeof</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var x = [typeof x, typeof y][1];</span><br><span class="line">typeof typeof x;</span><br></pre></td></tr></table></figure>
+<p><strong>答案：“string”</strong></p>
+<p>解释：这题目比较简单，注意下返回类型即可。x = [ , ][1]；即 x = typeof y = ‘undefind’。然后再typeof typeof x必然就是&quot;string&quot;了。</p>
+<h4 id="12对象">12.对象</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function(foo)&#123;</span><br><span class="line">    return typeof foo.bar;</span><br><span class="line">&#125;)(&#123; foo: &#123; bar: 1 &#125; &#125;)&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>答案：“undefined”</strong></p>
+<p>解释：这个特别有误导性，要仔细看，{ foo: { bar: 1 } }传给了函数作为实参，所以要想取到bar的值应该是 foo.foo.bar，实参的foo里面并没有一个叫做bar的属性，只有属性foo</p>
+<h4 id="13函数作用域new关键字">13.函数作用域，new关键字</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function setName(obj) &#123;</span><br><span class="line">　　obj.name = 'zs'</span><br><span class="line">　　var obj = new Object()</span><br><span class="line">　　obj.name = 'ls'</span><br><span class="line">&#125;</span><br><span class="line">var obj = new Object()</span><br><span class="line">setName(obj)</span><br><span class="line">console.log(obj.name)</span><br></pre></td></tr></table></figure>
+<p>**答案：‘zs’</p>
+<p>解释：代码执行时从第6行开始看，先是创建了一个obj对象。</p>
+<p>在执行函数setName(obj)时，第2行处给这个对象新增了name属性，并赋值为‘zs’。</p>
+<p>执行到第3行处是，又新创建了一个名为obj的对象，因为对象的存储方式，所以两者并不冲突，也不指向同一个位置。这时候我们执行到第4行代码处是在给这个新对象添加属性并赋值为‘ls’,原始obj对象的属性值没有被修改。</p>
+<p>执行完函数后，又会继续执行第8行，这时候因为函数局部作用域的限制，只能访问到在函数外部定义的obj（第一个obj），所以输出的结果也就是‘zs’了。</p>
+<p>另外如果是下面这种情况，结果就是’ls’了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function setName(obj) &#123;</span><br><span class="line">    obj.name = 'zs'</span><br><span class="line">    var obj = new Object()</span><br><span class="line">    obj.name = 'ls'</span><br><span class="line">    return obj</span><br><span class="line">&#125;</span><br><span class="line">var obj = new Object()</span><br><span class="line">obj = setName(obj)</span><br><span class="line">console.log(obj.name)</span><br></pre></td></tr></table></figure>
+<h4 id="14闭包">14.闭包</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for(var i=0;i&lt;3;i++) &#123;</span><br><span class="line">    arr[i] = function() &#123;</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">arr[0]();</span><br><span class="line">arr[1]();</span><br><span class="line">arr[2]();</span><br></pre></td></tr></table></figure>
+<p><strong>答案：3　　3　　3</strong></p>
+<p>解释：从上面的代码可以看到，在for循环遍历的过程中，只是给数组中存入了三个函数，该函数提供了在控制台中打印 i 的功能。而等到函数真正被调用执行时，i 的值早就已经变为了3，这时候再打印结果就只能全都是3了。</p>
+<p>另外，如果想要输出 1　　2　　3 的结果，就需要进行如下的函数闭包操作，即在遍历的时候就将 i 的值传递到函数内部在内存中存储起来，再调用的时候就可以输出1　　2　　3 了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">    for(var i=0;i&lt;3;i++) &#123;</span><br><span class="line">        arr[i] = (function(n) &#123;</span><br><span class="line">            // 这个位置是闭包环境</span><br><span class="line">            return function() &#123;</span><br><span class="line">                console.log(n)</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;)(i);</span><br><span class="line">&#125;</span><br><span class="line">arr[0]();</span><br><span class="line">arr[1]();</span><br><span class="line">arr[2]();</span><br></pre></td></tr></table></figure>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Javascript-bb/" data-toggle="tooltip" data-placement="top" title="Javascript 闭包">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/Javascript-copy/" data-toggle="tooltip" data-placement="top" title="Javascript中的深拷贝与浅拷贝">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#javascript面试中的坑"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Javascript&#x9762;&#x8BD5;&#x4E2D;&#x7684;&#x5751;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1typeof-对类型的判断"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">1.typeof &#x5BF9;&#x7C7B;&#x578B;&#x7684;&#x5224;&#x65AD;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2函数的声明"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">2.&#x51FD;&#x6570;&#x7684;&#x58F0;&#x660E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3delete方法"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">3.delete&#x65B9;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4变量的声明和赋值"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">4.&#x53D8;&#x91CF;&#x7684;&#x58F0;&#x660E;&#x548C;&#x8D4B;&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#5自调用函数传函数参数"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">5.&#x81EA;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x4F20;&#x51FD;&#x6570;&#x53C2;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6自调用函数和arguments对象"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">6.&#x81EA;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x548C;arguments&#x5BF9;&#x8C61;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#7逗号操作符"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">7.&#x9017;&#x53F7;&#x64CD;&#x4F5C;&#x7B26;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#8函数声明"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">8.&#x51FD;&#x6570;&#x58F0;&#x660E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#9预解析"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text">9.&#x9884;&#x89E3;&#x6790;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#10创建对象new关键字"><span class="toc-nav-number">1.10.</span> <span class="toc-nav-text">10.&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;new&#x5173;&#x952E;&#x5B57;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#11数组typeof"><span class="toc-nav-number">1.11.</span> <span class="toc-nav-text">11.&#x6570;&#x7EC4;&#xFF0C;typeof</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#12对象"><span class="toc-nav-number">1.12.</span> <span class="toc-nav-text">12.&#x5BF9;&#x8C61;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#13函数作用域new关键字"><span class="toc-nav-number">1.13.</span> <span class="toc-nav-text">13.&#x51FD;&#x6570;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;new&#x5173;&#x952E;&#x5B57;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#14闭包"><span class="toc-nav-number">1.14.</span> <span class="toc-nav-text">14.&#x95ED;&#x5305;</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.csdn.net/huwh_" target="_blank">CSDN Blog 胡伟煌</a></li>
+                    
+                        <li><a href="http://dockone.io/people/胡伟煌" target="_blank">DockOne 胡伟煌</a></li>
+                    
+                        <li><a href="https://yq.aliyun.com/u/huweihuang" target="_blank">阿里云栖社区 胡伟煌</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/lkpqd">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 刘瓶子 2020 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://www.huweihuang.com">胡伟煌</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.liupingzi.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.liupingzi.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
